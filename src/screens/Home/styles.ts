@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import {theme} from '@theme/theme';
+import { theme } from '@theme/theme';
 
 export const styles = StyleSheet.create({
   container:{
@@ -9,6 +9,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: theme.COLORS.GRAY_7,
     padding: 30,
+  },
+  list:{
+    flex:1,
+    width:'100%',      
   },
   text: {
     fontFamily: theme.FONT_FAMILY.REGULAR,
@@ -21,5 +25,13 @@ export const styles = StyleSheet.create({
     textAlign: 'left',
     width: '100%',
     marginBottom: 10,
+  },
+  textHederSection:{
+    fontFamily: theme.FONT_FAMILY.BOLD,
+    fontSize: theme.FONT_SIZE.S18,
+    color: theme.COLORS.GRAY_1,
+    marginTop: 20,
+    marginBottom: 10,
   }
+
 });

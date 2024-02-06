@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { theme } from '@theme/theme';
 
 export const styles = StyleSheet.create({
-  container: {
+  containerTargetOn: {
     height: 115,
     width:'100%',    
     alignItems: 'center',
@@ -13,7 +13,19 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: theme.COLORS.GREEN_LIGHT
   },
+  containerTargetOf: {
+    height: 115,
+    width:'100%',    
+    alignItems: 'center',
+    padding: 6,
+    marginTop: 25,
+    marginBottom: 25,
+    borderRadius: 12,
+    backgroundColor: theme.COLORS.RED_LIGHT
+  },
+
   formButton:{    
+    height: 24,
     alignSelf: 'flex-end',
   },
   title:{
