@@ -15,7 +15,7 @@ export function ButtonIcon({iconName, size, color, ...rest}: Props){
       style={styles.container}
       {...rest}
     >
-      <MaterialIcons 
+      <MaterialIcons
         name={iconName}
         color={color}
         size={size}         

@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { Text, SectionList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from '@react-navigation/native';
 
 import { Header } from "@components/Header";
-import { ResultsCard } from "@components/ResultsCard";
+import { StatisticsCard } from "@components/StatisticsCard";
 import { Button } from '@components/Button';
 import { SnackItem } from '@components/SnackItem';
 
 import { styles } from './styles';
 
 export function Home(){
+  const [target, setTarget] = useState(true);
+
   const [snacks, setSnacks] = useState([
     {
       title: '01.02.24',
@@ -49,23 +52,28 @@ export function Home(){
     }
   ]);
 
+
+  const navigation = useNavigation();
+
+  
+
   function handleAddSnack(){
     console.log('adiciou uma refeição');
   }
 
-  function handleShowResults(){
-    console.log('mostrar resultados')
+  function handleShowStatistics(){
+    navigation.navigate('statistics', { target: target });    
   }
 
   return(
     <SafeAreaView style={styles.container}>
       <Header/>
-      <ResultsCard
+      <StatisticsCard
         title={'90,86%'}
         subTitle={'das refeições dentro da dieta'}
         showIcon={true}
-        target={false}
-        onSubmit={handleShowResults}        
+        target={target}
+        onSubmit={handleShowStatistics}    
       />
       <Text style={styles.textLauch}>Refeições</Text>
       <Button

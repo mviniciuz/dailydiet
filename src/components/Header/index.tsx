@@ -1,6 +1,5 @@
 import { View, Image} from "react-native";
 
-
 import Logo from '@assets/Logo.png';
 import Elpipse from '@assets/Ellipse.png';
 

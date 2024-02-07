@@ -20,7 +20,7 @@ export function SnackItem({time, snack, target = true, ...rest}: Props){
       <MaterialIcons 
         name="circle"
         color={target ? colors.GREEN_MID : colors.RED_MID }
-        size={14}
+        size={16}
       />
 
     </TouchableOpacity>

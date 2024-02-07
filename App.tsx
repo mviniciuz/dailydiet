@@ -2,9 +2,12 @@ import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import {useFonts, NunitoSans_400Regular, NunitoSans_700Bold} from '@expo-google-fonts/nunito-sans';
 
-import { Home } from 'src/screens/Home';
+import { Routes } from './src/routes';
+
 import { Loading } from 'src/components/Loading';
 import { theme } from '@theme/theme';
+
+import { Statistics } from '@screens/Statistics';
 
 export default function App() {
 
@@ -17,7 +20,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      {fontsLoaded ? <Home/> : <Loading/> }     
+      {fontsLoaded ? <Routes/> : <Loading/> }     
     </View>
   );
 }

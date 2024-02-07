@@ -11,7 +11,7 @@ type Props = {
   onSubmit?: () => void;
 }
 
-export function ResultsCard({
+export function StatisticsCard({
    title,
    subTitle,
    showIcon = false,

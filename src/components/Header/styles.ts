@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
     
     backgroundColor: theme.COLORS.GRAY_7,
+
+    marginBottom: 30,
   }
 
 })

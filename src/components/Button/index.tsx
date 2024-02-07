@@ -26,7 +26,7 @@ export function Button({title, onSubmit, iconType = 'none', ...rest}: Props){
           iconType === 'edit' ? 'border-color' : 'delete'
         }
         color={colors.WHITE}
-        size={18}
+        size={22}
         />     
       }
       <Text style={styles.text}>{title}</Text>

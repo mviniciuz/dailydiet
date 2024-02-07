@@ -4,14 +4,14 @@ import { theme } from '@theme/theme';
 
 export const styles = StyleSheet.create({
   container:{
-    maxHeight: 50,
-    minHeight: 50,
+    maxHeight: 55,
+    minHeight: 55,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.COLORS.GRAY_2,
-    borderRadius: 12
+    borderRadius: 6
   },
   text: {
     fontFamily: theme.FONT_FAMILY.BOLD,

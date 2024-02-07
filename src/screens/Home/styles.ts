@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: theme.COLORS.GRAY_7,
-    padding: 30,
+    padding: 25,
   },
   list:{
     flex:1,

@@ -7,8 +7,7 @@ export const styles = StyleSheet.create({
     height: 115,
     width:'100%',    
     alignItems: 'center',
-    padding: 6,
-    marginTop: 25,
+    padding: 6,   
     marginBottom: 25,
     borderRadius: 12,
     backgroundColor: theme.COLORS.GREEN_LIGHT
@@ -17,8 +16,7 @@ export const styles = StyleSheet.create({
     height: 115,
     width:'100%',    
     alignItems: 'center',
-    padding: 6,
-    marginTop: 25,
+    padding: 6,  
     marginBottom: 25,
     borderRadius: 12,
     backgroundColor: theme.COLORS.RED_LIGHT
