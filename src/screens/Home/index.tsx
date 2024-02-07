@@ -11,7 +11,7 @@ import { SnackItem } from '@components/SnackItem';
 import { styles } from './styles';
 
 export function Home(){
-  const [target, setTarget] = useState(true);
+  const [target, setTarget] = useState(false);
 
   const [snacks, setSnacks] = useState([
     {

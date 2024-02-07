@@ -1,8 +1,11 @@
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text } from 'react-native';
+import { SafeAreaView} from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Navigator } from '@components/Navigator';
 import { StatisticsCard } from '@components/StatisticsCard';
+import { styles } from './styles';
+
 
 type RouteParams = {
   target: boolean;
@@ -20,7 +23,7 @@ export function Statistics(){
   }
 
   return(
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Navigator        
         title="voltar"      
         onSubmit={handleBackScreen}
@@ -32,7 +35,33 @@ export function Statistics(){
         subTitle={'das refeições dentro da dieta'}        
         target={target}          
       />
+      <View style={styles.formEstatiscs}>
+        <Text style={styles.textTitle}>{'Estatisticas gerais!'}</Text>
+        <View style={styles.cardLarge}>
+          <Text style={styles.titleCard}>{'22'}</Text>
+          <Text style={styles.subtitleCard}>{'melhor sequência de prados dentro da dieta'}</Text>
+        </View>
+        <View style={styles.cardLarge}>
+          <Text style={styles.titleCard}>{'109'}</Text>
+          <Text style={styles.subtitleCard}>{'refeições registradas'}</Text>
+        </View>
+        <View style={styles.formCardSmall}>
+           <View style={styles.cardTargetOn}>
+             <Text style={styles.titleCard}>{'99'}</Text>
+             <Text style={styles.subtitleCard}>{'refeições dentro da Dieta'}</Text>
+              
+           </View>
+           <View style={styles.cardTargetOff}>
+             <Text style={styles.titleCard}>{'10'}</Text>
+             <Text style={styles.subtitleCard}>{'refeições fora da Dieta'}</Text>
+              
+           </View>         
 
+        
+        </View>        
+
+
+      </View>
     </SafeAreaView>
   );
 }
