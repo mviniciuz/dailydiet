@@ -22,19 +22,22 @@ export function Statistics(){
     navigation.navigate('home');  
   }
 
+
   return(
-    <SafeAreaView style={styles.container}>
-      <Navigator        
-        title="voltar"      
-        onSubmit={handleBackScreen}
-        target={target}
-                
-      />
-      <StatisticsCard
-        title={'90,86%'}
-        subTitle={'das refeições dentro da dieta'}        
-        target={target}          
-      />
+    <SafeAreaView style={ target ? styles.containerOn : styles.containerOff}>
+      <View style={target? styles.formHeaderOnTarget: styles.formHeaderOffTarget}>
+        <Navigator        
+          title="voltar"      
+          onSubmit={handleBackScreen}
+          target={target}
+                  
+        />
+        <StatisticsCard
+          title={'90,86%'}
+          subTitle={'das refeições dentro da dieta'}        
+          target={target}          
+        />
+      </View>
       <View style={styles.formEstatiscs}>
         <Text style={styles.textTitle}>{'Estatisticas gerais!'}</Text>
         <View style={styles.cardLarge}>

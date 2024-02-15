@@ -58,7 +58,7 @@ export function Home(){
   
 
   function handleAddSnack(){
-    console.log('adiciou uma refeição');
+    navigation.navigate('snack');
   }
 
   function handleShowStatistics(){

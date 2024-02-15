@@ -4,7 +4,8 @@ export declare global {
       home: undefined,
       statistics: {
         target: boolean;
-      }
+      },
+      snack
 
       
  //     players: {
