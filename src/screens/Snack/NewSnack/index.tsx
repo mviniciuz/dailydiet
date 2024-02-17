@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { styles } from './styles';
 
+import { SelectTarget } from '@components/SelectTarget';
+
 export function NewSnack(){
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -40,9 +42,10 @@ export function NewSnack(){
             value={time}
             onChangeText={setTime}            
           />
-        </View>        
-
+        </View> 
       </View>
+      <Text style={styles.title}>{'Is in the Diet'}</Text>
+      <SelectTarget/>  
     </SafeAreaView>
   )
 }

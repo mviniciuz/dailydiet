@@ -5,15 +5,13 @@ import { useNavigation } from "@react-navigation/native";
 import { Navigator } from '@components/Navigator';
 import { NewSnack } from '@screens/Snack/NewSnack';
 
-
-
 import { styles } from './styles';
 
 export function Snack(){
   const navigation = useNavigation();  
 
   function handleBack(){
-    navigation.goBack();    
+    navigation.goBack(); 
   }
 
   return(

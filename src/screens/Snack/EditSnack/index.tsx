@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './styles';
 
 
-export function NewSnack(){
+export function EditSnack(){
   return(
     <SafeAreaView style={styles.container}>
       
