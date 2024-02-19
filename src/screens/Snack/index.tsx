@@ -25,7 +25,6 @@ export function Snack(){
       <View style={styles.formContent}>
         <NewSnack/>
 
-
       </View>      
     </SafeAreaView>
   )

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
  import { MaterialIcons } from '@expo/vector-icons';
 
 import { styles, colors } from './styles';
-import { theme } from "@theme/theme";
+
 
 type Props = TouchableOpacityProps & {
   title: string;

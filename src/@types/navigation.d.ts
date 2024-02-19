@@ -5,7 +5,16 @@ export declare global {
       statistics: {
         target: boolean;
       },
-      snack
+      snack,
+      NewSnack,
+      TargetMessage: {
+        title: string;
+        subTitle: string;
+        target: boolean;
+      },
+      PreviewEditSnack:{
+        target: boolean;
+      }
 
       
  //     players: {

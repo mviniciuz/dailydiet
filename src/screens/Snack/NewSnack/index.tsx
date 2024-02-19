@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import {View, TextInput, Text} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 
 import { SelectTarget } from '@components/SelectTarget';
+import { Button  } from '@components/Button';
 
 export function NewSnack(){
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [data, setData] = useState('');
   const [time, setTime] = useState('');
+  const [target, setTarget] = useState(true);
+
+  const navigation = useNavigation();
 
   return(
     <SafeAreaView style={styles.container}>
@@ -45,7 +50,28 @@ export function NewSnack(){
         </View> 
       </View>
       <Text style={styles.title}>{'Is in the Diet'}</Text>
-      <SelectTarget/>  
+      <SelectTarget target={target} setTarget={setTarget}/>
+
+      {target ? 
+        <Button
+          title="Add snack"
+          onSubmit={() => navigation.navigate('TargetMessage', {
+            title: 'Continue assim!',
+            subTitle: 'Você continua dentro da dieta. Muito Bem',
+            target: target
+          })}
+        /> 
+        :
+        <Button
+        title="Add snack"
+        onSubmit={() => navigation.navigate('TargetMessage', {
+          title: 'Que pena!',
+          subTitle: 'Você saiu da dienta dessa vez, mas continue se esforçando e não desista',
+          target: target
+        })}
+      />    
+    } 
+
     </SafeAreaView>
   )
 }

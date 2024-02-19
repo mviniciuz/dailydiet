@@ -17,7 +17,8 @@ export const styles = StyleSheet.create({
     fontFamily: theme.FONT_FAMILY.BOLD,
     fontSize: theme.FONT_SIZE.S14,
     color: theme.COLORS.WHITE,
-    marginLeft: 12
+    
+  
   }
 
 });

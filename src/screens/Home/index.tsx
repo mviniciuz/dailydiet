@@ -11,7 +11,7 @@ import { SnackItem } from '@components/SnackItem';
 import { styles } from './styles';
 
 export function Home(){
-  const [target, setTarget] = useState(false);
+  const [target, setTarget] = useState(true);
 
   const [snacks, setSnacks] = useState([
     {
@@ -90,6 +90,7 @@ export function Home(){
             time={item.time}
             snack={item.text}
             target={item.target}
+            onPress={() =>navigation.navigate('PreviewEditSnack', {target: target})}
           />
         )}
         renderSectionHeader={({section: {title}})=> <Text style={styles.textHederSection}>{title}</Text>}

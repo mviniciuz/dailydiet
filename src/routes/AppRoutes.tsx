@@ -3,7 +3,10 @@ import { createNativeStackNavigator} from '@react-navigation/native-stack';
 import { Home } from '@screens/Home';
 import { Statistics } from '@screens/Statistics';
 import { Snack } from '@screens/Snack';
- 
+import { NewSnack } from '@screens/Snack/NewSnack';
+import { TargetMessage } from '@screens/Snack/TargetMessage';
+import { PreviewEditSnack } from '@screens/Snack/EditSnack/PreviewEditSnack';
+
 const { Screen, Navigator } = createNativeStackNavigator();
 
 export function AppRoute(){
@@ -23,6 +26,18 @@ export function AppRoute(){
         name='snack'
         component={Snack}
       />
+      <Screen
+        name='NewSnack'
+        component={NewSnack}
+      />
+      <Screen
+        name='TargetMessage'
+        component={TargetMessage}
+      />
+      <Screen
+        name='PreviewEditSnack'
+        component={PreviewEditSnack}
+      />                    
     </Navigator>
   )
 }

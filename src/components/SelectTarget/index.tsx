@@ -6,8 +6,12 @@ import {MaterialIcons} from '@expo/vector-icons';
 
 import {styles, colors} from './styles';
 
-export function SelectTarget(){
-  const [target, setTarget] = useState(true);
+type Props = {
+  target: boolean;
+  setTarget: (target: boolean)=>void
+}
+
+export function SelectTarget({target, setTarget}: Props){ 
   
   return(
     <View style={styles.container}>

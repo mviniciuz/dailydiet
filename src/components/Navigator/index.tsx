@@ -35,7 +35,7 @@ export function Navigator( { title, target, onSubmit }: Props){
         onPress={onSubmit}
       />
       {title &&
-        <Text style={styles.title}>Nova Refeição</Text>      
+        <Text style={styles.title}>{title}</Text>      
       }
      
     </View>
