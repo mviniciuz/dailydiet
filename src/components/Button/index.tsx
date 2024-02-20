@@ -14,7 +14,7 @@ type Props = TouchableOpacityProps & {
 export function Button({title, onSubmit, iconType = 'none', ...rest}: Props){
   return(
     <TouchableOpacity 
-      style={styles.container}
+      style={iconType !== 'delete'? styles.containerNewEdit : styles.containerDelete}
       {...rest}
       onPress={onSubmit}
     >
@@ -25,11 +25,11 @@ export function Button({title, onSubmit, iconType = 'none', ...rest}: Props){
           iconType === 'new' ? 'add' :
           iconType === 'edit' ? 'border-color' : 'delete'
         }
-        color={colors.WHITE}
+        color={iconType !== 'delete'?  colors.WHITE : colors.GRAY_2}
         size={22}
         />     
       }
-      <Text style={styles.text}>{title}</Text>
+      <Text style={iconType !== 'delete'? styles.textNewEdit : styles.textDelete}>{title}</Text>
 
     </TouchableOpacity>
   );
