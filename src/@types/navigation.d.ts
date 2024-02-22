@@ -14,7 +14,8 @@ export declare global {
       },
       PreviewEditSnack:{
         target: boolean;
-      }
+      },
+      EditSnack,
 
       
  //     players: {

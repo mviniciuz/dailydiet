@@ -1,5 +1,5 @@
 
-import {Text, View} from 'react-native';
+import {Text, View, Alert} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { MaterialIcons} from '@expo/vector-icons';
@@ -19,11 +19,24 @@ export function PreviewEditSnack(){
   const {target} = route.params as routeParams;
 
   function handleEditSnack(){
-
+    navigation.navigate('EditSnack');
   }
 
   function handleDeleteSnack(){
-    
+    function onDelete(){
+
+    }
+
+    Alert.alert('Delete snack', 'Do you want to delete the snack?',[
+      {
+        text: 'yes', 
+        onPress: ()=> onDelete(),
+      },
+      {
+        text: 'No',
+        onPress: () => {}
+      }
+    ])
   }
 
   function handleBack(){
@@ -48,13 +61,14 @@ export function PreviewEditSnack(){
             {'Sanduíche de pão integral com atul e salada de alfaçe e tomates'}
           </Text>        
           <Text style={styles.dataTime}>
-            {'Data e hora'}
+            {'Date and Time'}
           </Text>
           <View style={styles.target}>
             <MaterialIcons name='circle' size={15} color={target ? colors.GREEN_MID : colors.RED_MID}/>
-            <Text style={styles.targetTitle}>{target ? 'Dentro da Dieta': 'Fora da Dieta'}</Text>
+            <Text style={styles.targetTitle}>{target ? 'In the Diet': 'Out the Diet'}</Text>
           </View>
         </View>
+        
   
         <View style={styles.buttonContainer}>
           <Button

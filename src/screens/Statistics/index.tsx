@@ -27,36 +27,36 @@ export function Statistics(){
     <SafeAreaView style={ target ? styles.containerOn : styles.containerOff}>
       <View style={target? styles.formHeaderOnTarget: styles.formHeaderOffTarget}>
         <Navigator        
-          title="voltar"      
+          title="Go to home"      
           onSubmit={handleBackScreen}
           target={target}
                   
         />
         <StatisticsCard
           title={'90,86%'}
-          subTitle={'das refeições dentro da dieta'}        
+          subTitle={'of the snacks are into the diet!'}        
           target={target}          
         />
       </View>
       <View style={styles.formEstatiscs}>
-        <Text style={styles.textTitle}>{'Estatisticas gerais!'}</Text>
+        <Text style={styles.textTitle}>{'All statistics!'}</Text>
         <View style={styles.cardLarge}>
           <Text style={styles.titleCard}>{'22'}</Text>
-          <Text style={styles.subtitleCard}>{'melhor sequência de prados dentro da dieta'}</Text>
+          <Text style={styles.subtitleCard}>{'Better sequency of snacks in days'}</Text>
         </View>
         <View style={styles.cardLarge}>
           <Text style={styles.titleCard}>{'109'}</Text>
-          <Text style={styles.subtitleCard}>{'refeições registradas'}</Text>
+          <Text style={styles.subtitleCard}>{'Snacks register'}</Text>
         </View>
         <View style={styles.formCardSmall}>
            <View style={styles.cardTargetOn}>
              <Text style={styles.titleCard}>{'99'}</Text>
-             <Text style={styles.subtitleCard}>{'refeições dentro da Dieta'}</Text>
+             <Text style={styles.subtitleCard}>{'Snacks into the diet'}</Text>
               
            </View>
            <View style={styles.cardTargetOff}>
              <Text style={styles.titleCard}>{'10'}</Text>
-             <Text style={styles.subtitleCard}>{'refeições fora da Dieta'}</Text>
+             <Text style={styles.subtitleCard}>{'Snacks out of the diet'}</Text>
               
            </View>         
 

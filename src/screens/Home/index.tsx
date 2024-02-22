@@ -70,14 +70,14 @@ export function Home(){
       <Header/>
       <StatisticsCard
         title={'90,86%'}
-        subTitle={'das refeições dentro da dieta'}
+        subTitle={'of snacks on into the diet!'}
         showIcon={true}
         target={target}
         onSubmit={handleShowStatistics}    
       />
       <Text style={styles.textLauch}>Refeições</Text>
       <Button
-        title={'Nova refeição'}
+        title={'New Snack'}
         onSubmit={handleAddSnack}
         iconType={"new"}
       />

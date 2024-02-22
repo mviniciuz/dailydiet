@@ -32,7 +32,7 @@ export function TargetMessage(){
       }
       
       <Button 
-        title='Ir para a página inicial!'
+        title='Go to home page!'
         onSubmit={() => navigation.navigate('home')}                
       />
     </SafeAreaProvider>

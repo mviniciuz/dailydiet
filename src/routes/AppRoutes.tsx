@@ -6,6 +6,7 @@ import { Snack } from '@screens/Snack';
 import { NewSnack } from '@screens/Snack/NewSnack';
 import { TargetMessage } from '@screens/Snack/TargetMessage';
 import { PreviewEditSnack } from '@screens/Snack/EditSnack/PreviewEditSnack';
+import { EditSnack } from '@screens/Snack/EditSnack';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -37,7 +38,12 @@ export function AppRoute(){
       <Screen
         name='PreviewEditSnack'
         component={PreviewEditSnack}
-      />                    
+      />
+
+      <Screen
+        name='EditSnack'
+        component={EditSnack}
+      />                               
     </Navigator>
   )
 }
