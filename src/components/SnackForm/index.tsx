@@ -9,6 +9,8 @@ import { SelectTarget } from "@components/SelectTarget";
 import { Button } from "@components/Button";
 import { useState } from "react";
 
+import { snackAddNew } from "@storage/snack/snackAddNew";
+
 type Props = {
   name: string;
   setName: () => {};
@@ -39,6 +41,18 @@ export function SnackForm({
   const navigation = useNavigation();
 
   function handleSubmit(){
+
+    const item = {
+      text: description,
+      time: time,
+      type: type
+    }
+
+    snackAddNew(data, item)
+    
+    
+
+
     navigation.navigate('TargetMessage', {
       title: target ? 'Very good!': 'What shame!',
       subTitle: target ? 

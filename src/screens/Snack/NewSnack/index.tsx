@@ -13,7 +13,7 @@ export function NewSnack(){
  
   return(
     <SafeAreaView style={styles.container}>
-      <SnackForm 
+      <SnackForm
         name={name}
         setName={() => setName}
         description={description}

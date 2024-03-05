@@ -23,7 +23,7 @@ export function Home(){
           target: false,
         },
         {
-          data: '01.02.24',
+          
           time: '19:00',
           text: 'Whey protain com leite',
           target: true,
