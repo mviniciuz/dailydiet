@@ -12,47 +12,31 @@ import { useState } from "react";
 import { snackAddNew } from "@storage/snack/snackAddNew";
 
 type Props = {
-  name: string;
-  setName: () => {};
-  description: string;
-  setDescription: ()=> {};
-  data: string;
-  setData: ()=> {};
-  time: string;
-  setTime: () => {};
   type: 'new' | 'edit',
-
 }
 
-export function SnackForm({
-    name,
-    setName,
-    description,
-    setDescription,
-    data,
-    setData,
-    time,
-    setTime,
-    type,
+export function SnackForm({ type }: Props){
 
-  }: Props){
-
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [data, setData] = useState('');
+  const [time, setTime] = useState('');
   const [target, setTarget] = useState(false);  
   const navigation = useNavigation();
 
   function handleSubmit(){
 
     const item = {
+      title: name,
       text: description,
       time: time,
-      type: type
+      target: target
     }
 
-    snackAddNew(data, item)
+    if (type === 'new') {
+      snackAddNew(item);
+    }
     
-    
-
-
     navigation.navigate('TargetMessage', {
       title: target ? 'Very good!': 'What shame!',
       subTitle: target ? 
@@ -61,7 +45,6 @@ export function SnackForm({
       target: target
     });
   }
-
 
   return(
     <View style={styles.container}>

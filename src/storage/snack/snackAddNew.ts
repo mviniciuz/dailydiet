@@ -9,14 +9,16 @@ type Types = {
   title: string;
   text: string; 
   time: string; 
-  target: string;
+  target: boolean;
 }
 
-export async function snackAddNew({title, text, time, target}: Types){
+export async function snackAddNew({title, text, time, target} : Types){
 
   try {
 
     const snacks = await snackGetAll();
+
+    console.log(`title${title} text${text} time${time} target${target}`);
      
     const snack = snacks.filter(snack => snack.title === title);
 
