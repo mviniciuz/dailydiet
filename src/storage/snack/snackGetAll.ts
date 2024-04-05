@@ -9,6 +9,8 @@ export async function snackGetAll(){
 
     const snacks: string[] = storage ?  JSON.parse(storage) : [];
 
+    console.log(snacks);
+
     return snacks;
     
   } catch (error) {

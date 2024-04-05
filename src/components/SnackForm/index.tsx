@@ -27,8 +27,9 @@ export function SnackForm({ type }: Props){
   function handleSubmit(){
 
     const item = {
-      title: name,
+      name: name,
       text: description,
+      date: data,
       time: time,
       target: target
     }

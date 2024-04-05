@@ -7,49 +7,53 @@ import { Alert } from "react-native";
 
 type Types = {
   title: string;
+  name: string;
   text: string; 
+  date: string;
   time: string; 
   target: boolean;
 }
 
-export async function snackAddNew({title, text, time, target} : Types){
+export async function snackAddNew({name, text, date, time, target} : Types){
 
   try {
 
     const snacks = await snackGetAll();
-
-    console.log(`title${title} text${text} time${time} target${target}`);
      
-    const snack = snacks.filter(snack => snack.title === title);
+    const snack = snacks.filter(snack => snack.title === date);
 
-    if(snack){
-      const snackFound = snacks.filter(sanck => snack.time === time);
+    if(snack.length > 0){
+      const snackFound = snack.filter(snack => snack.time === time);
       if(snackFound) {
         return Alert.alert('Refeição já cadastrada');
       }else{
         snack.data.push({
-          text,
+          name,
           time,
+          text,
           target
         });
       }
 
     } else {
       snack.push({
-        title,
+        title: date,
         data: [
           {
-            text,
+            name,
             time,
+            text,
             target
           }
         ]
-
       })
     }
 
-    await AsyncStorage.setItem(SNACK_COLLECTION, JSON.stringify(snack));
-    
+   const storage = JSON.stringify([...snacks, snack]);
+
+    await AsyncStorage.setItem(SNACK_COLLECTION, storage);
+    const snacksReturn =  await AsyncStorage.getItem(SNACK_COLLECTION);
+ 
   } catch (error) {
     
   }

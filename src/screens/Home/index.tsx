@@ -1,61 +1,30 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Text, SectionList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { Header } from "@components/Header";
 import { StatisticsCard } from "@components/StatisticsCard";
 import { Button } from '@components/Button';
 import { SnackItem } from '@components/SnackItem';
 
+import { snackGetAll } from '@storage/snack/snackGetAll';
+
 import { styles } from './styles';
 
 export function Home(){
   const [target, setTarget] = useState(false);
 
-  const [snacks, setSnacks] = useState([
-    {
-      title: '01.02.24',
-      data: [
-        {        
-          time: '20:00',
-          text: 'x-tudo',
-          target: false,
-        },
-        {
-          
-          time: '19:00',
-          text: 'Whey protain com leite',
-          target: true,
-        },
-      ],
-    },
-    {
-      title: '02.02.24',
-      data: [
-        {       
-          time: '20:00',
-          text: 'x-tudo',
-          target: false,
-        },
-        {        
-          time: '19:00',
-          text: 'Whey protain com leite',
-          target: true,
-        },
-        {        
-          time: '18:00',
-          text: 'Pão com carne moída',
-          target: true,
-        },
-      ]
-    }
-  ]);
+  const [snacks, setSnacks] = useState([]);
 
 
   const navigation = useNavigation();
 
-  
+  async function getSnacks(){
+    const storage = await snackGetAll();
+    setSnacks(storage);
+  }
+
 
   function handleAddSnack(){
     navigation.navigate('snack');
@@ -64,6 +33,10 @@ export function Home(){
   function handleShowStatistics(){
     navigation.navigate('statistics', { target: target });    
   }
+
+  useFocusEffect(useCallback(()=>{
+    getSnacks();
+  },[]))
 
   return(
     <SafeAreaView style={styles.container}>
@@ -88,7 +61,7 @@ export function Home(){
         renderItem={( { item } )=> (
           <SnackItem
             time={item.time}
-            snack={item.text}
+            snack={item.name}
             target={item.target}
             onPress={() =>navigation.navigate('PreviewEditSnack', {target: target})}
           />
