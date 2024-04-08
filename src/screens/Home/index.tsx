@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Text, SectionList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -21,10 +21,12 @@ export function Home(){
   const navigation = useNavigation();
 
   async function getSnacks(){
-    const storage = await snackGetAll();
-    setSnacks(storage);
-  }
 
+    const storage = await snackGetAll();
+    const storage2 = await snackGetAll();
+
+    setSnacks(storage2);
+  }
 
   function handleAddSnack(){
     navigation.navigate('snack');
@@ -36,7 +38,7 @@ export function Home(){
 
   useFocusEffect(useCallback(()=>{
     getSnacks();
-  },[]))
+  },[]));
 
   return(
     <SafeAreaView style={styles.container}>
@@ -58,12 +60,12 @@ export function Home(){
         style={styles.list}
         sections={snacks}
         keyExtractor={ ( item, index ) => item.text + index}
-        renderItem={( { item } )=> (
+        renderItem={( { item, section:{title} } )=> (
           <SnackItem
             time={item.time}
             snack={item.name}
             target={item.target}
-            onPress={() =>navigation.navigate('PreviewEditSnack', {target: target})}
+            onPress={()=>navigation.navigate('PreviewEditSnack', { snack: item, title:title } )}
           />
         )}
         renderSectionHeader={({section: {title}})=> <Text style={styles.textHederSection}>{title}</Text>}

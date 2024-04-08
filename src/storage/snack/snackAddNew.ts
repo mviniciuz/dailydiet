@@ -21,13 +21,16 @@ export async function snackAddNew({name, text, date, time, target} : Types){
     const snacks = await snackGetAll();
      
     const snack = snacks.filter(snack => snack.title === date);
+    const index = snacks.findIndex(snack => snack.title === date);
 
     if(snack.length > 0){
-      const snackFound = snack.filter(snack => snack.time === time);
-      if(snackFound) {
+      
+      if (snack[0].data[0].time === time){
+
         return Alert.alert('Refeição já cadastrada');
       }else{
-        snack.data.push({
+  
+        snacks[index].data.push({
           name,
           time,
           text,
@@ -36,7 +39,7 @@ export async function snackAddNew({name, text, date, time, target} : Types){
       }
 
     } else {
-      snack.push({
+      snacks.push({
         title: date,
         data: [
           {
@@ -49,10 +52,9 @@ export async function snackAddNew({name, text, date, time, target} : Types){
       })
     }
 
-   const storage = JSON.stringify([...snacks, snack]);
+    const storage = JSON.stringify(snacks)
 
     await AsyncStorage.setItem(SNACK_COLLECTION, storage);
-    const snacksReturn =  await AsyncStorage.getItem(SNACK_COLLECTION);
  
   } catch (error) {
     

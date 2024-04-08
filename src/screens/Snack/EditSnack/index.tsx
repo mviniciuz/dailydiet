@@ -3,20 +3,23 @@ import { View } from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { styles } from './styles';
 
 import { Navigator } from '@components/Navigator';
 import { SnackForm } from '@components/SnackForm';
 
-
 export function EditSnack(){
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [data, setData] = useState('');
-  const [time, setTime] = useState('');
-  const [target, setTarget] = useState(true);
+
+  const route = useRoute();
+  const {title, snack} = route.params;
+
+  const [name, setName] = useState(snack.name);
+  const [description, setDescription] = useState(snack.text);
+  const [data, setData] = useState(title);
+  const [time, setTime] = useState(snack.time);
+  const [target, setTarget] = useState(snack.target);
 
   const navigation = useNavigation();
 
@@ -36,14 +39,11 @@ export function EditSnack(){
       <View style={styles.formContent}>
 
         <SnackForm 
-          name={name}
-          setName={() => setName}
-          description={description}
-          setDescription={()=> setDescription}
-          data={data}
-          setData={()=> setData}
-          time={time}
-          setTime={() => setTime}
+          nameProp={name}
+          descriptionProp={description}
+          dataProp={data}
+          timeProp={time}
+          targetProp={target}
           type='edit'
         />
       </View>

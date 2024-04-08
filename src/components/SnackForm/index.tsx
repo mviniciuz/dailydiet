@@ -1,5 +1,4 @@
-import { View, Text, TextInput } from "react-native"
-
+import { View, Text, TextInput, Alert } from "react-native"
 
 import { useNavigation} from '@react-navigation/native';
 
@@ -10,21 +9,38 @@ import { Button } from "@components/Button";
 import { useState } from "react";
 
 import { snackAddNew } from "@storage/snack/snackAddNew";
+import { snackEdit } from "@storage/snack/snackEdit";
 
 type Props = {
   type: 'new' | 'edit',
+  nameProp?: string,
+  descriptionProp?: string,
+  dataProp?: string,
+  timeProp?: string,
+  targetProp?: boolean,
 }
 
-export function SnackForm({ type }: Props){
+export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp, targetProp }: Props){
 
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [data, setData] = useState('');
-  const [time, setTime] = useState('');
-  const [target, setTarget] = useState(false);  
+  const [name, setName] = useState(nameProp || '');
+  const [description, setDescription] = useState(descriptionProp || '');
+  const [data, setData] = useState(dataProp || '');
+  const [time, setTime] = useState(timeProp || '');
+  const [target, setTarget] = useState(targetProp || false);  
   const navigation = useNavigation();
 
   function handleSubmit(){
+
+    if (name.length === 0) {
+      return Alert.alert('Field name invalid');
+
+    } 
+    if (data.length === 0){
+      return Alert.alert('Field date invalid')
+    }
+    if (time.length === 0){
+      return Alert.alert('Field time invalid')
+    }  
 
     const item = {
       name: name,
@@ -36,6 +52,10 @@ export function SnackForm({ type }: Props){
 
     if (type === 'new') {
       snackAddNew(item);
+    }
+
+    if (type === 'edit') {
+      snackEdit(item);
     }
     
     navigation.navigate('TargetMessage', {
