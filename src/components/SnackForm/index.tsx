@@ -69,8 +69,6 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
       return
     }
 
-
-
     navigation.navigate('TargetMessage', {
       title: target ? 'Very good!': 'What shame!',
       subTitle: target ? 
@@ -87,7 +85,7 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
         keyboardDismissMode='on-drag'
       >
         <View style={styles.formContent}>
-          <Text style={styles.title}>{'Name'}</Text>
+          <Text style={styles.title}>{'Name snack'}</Text>
           <TextInput
             style={styles.inputName}
             value={name}
@@ -101,7 +99,7 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
           />
           <View style={styles.dataTime}>
             <View style={styles.data}>
-              <Text style={styles.title}>{'Data'}</Text>
+              <Text style={styles.title}>{'Date'}</Text>
               <TouchableOpacity onPress={() => setOpenDate(prevState => !prevState)}>
                 <TextInput
                   style={styles.inputDataTime}
@@ -113,10 +111,11 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
                   <DateTimePicker
                     value={date}
                     onChange={(event, selectedDate) => {
-                      setDate(selectedDate);
                       setOpenDate(false);
+                      setDate(selectedDate);
                     }}
                     mode="date"
+                    display="spinner"
                   />
                 }     
               </TouchableOpacity>
@@ -134,10 +133,13 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
                   <DateTimePicker
                     value={time}
                     onChange={(event, selectedDate) => {
-                      setTime(selectedDate);
                       setOpenTime(false);
+                      setTime(selectedDate);
+                    
                     }}
                     mode="time"
+                    display="spinner"
+
                   />
                 }                
 

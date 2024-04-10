@@ -91,7 +91,7 @@ export function Home(){
         target={target}
         onSubmit={handleShowStatistics}    
       />
-      <Text style={styles.textLauch}>Refeições</Text>
+      <Text style={styles.textLauch}>Snacks</Text>
       <Button
         title={'New Snack'}
         onSubmit={handleAddSnack}

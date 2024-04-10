@@ -22,18 +22,18 @@ export function Statistics(){
     navigation.navigate('home');  
   }
 
-
   return(
     <SafeAreaView style={ target ? styles.containerOn : styles.containerOff}>
       <View style={target? styles.formHeaderOnTarget: styles.formHeaderOffTarget}>
         <Navigator        
           title="Go to home"      
           onSubmit={handleBackScreen}
-          target={target}
-                  
+          target={target}      
         />
         <StatisticsCard
-          title={`${statistics.percentTotal.toFixed(2)}%`}
+          title={
+            `${ isNaN(statistics.percentTotal) ? 0 : statistics.percentTotal.toFixed(2)}%`}
+          
           subTitle={'of the snacks are into the diet!'}        
           target={target}          
         />
@@ -52,18 +52,12 @@ export function Statistics(){
            <View style={styles.cardTargetOn}>
              <Text style={styles.titleCard}>{statistics.snacksIntoOfDiet}</Text>
              <Text style={styles.subtitleCard}>{'Snacks into the diet'}</Text>
-              
            </View>
            <View style={styles.cardTargetOff}>
              <Text style={styles.titleCard}>{statistics.snacksOutOfDiet}</Text>
              <Text style={styles.subtitleCard}>{'Snacks out of the diet'}</Text>
-              
            </View>         
-
-        
         </View>        
-
-
       </View>
     </SafeAreaView>
   );
