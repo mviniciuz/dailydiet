@@ -4,13 +4,14 @@ import { SNACK_COLLECTION } from "@storage/storageConfig";
 
 import { snackGetAll } from "@storage/snack/snackGetAll";
 import { Alert } from "react-native";
+import { format } from "date-fns";
 
 type Types = {
   title: string;
   name: string;
   text: string; 
-  date: string;
-  time: string; 
+  date: Date;
+  time: Date; 
   target: boolean;
 }
 
@@ -20,13 +21,12 @@ export async function snackAddNew({name, text, date, time, target} : Types){
 
     const snacks = await snackGetAll();
      
-    const snack = snacks.filter(snack => snack.title === date);
-    const index = snacks.findIndex(snack => snack.title === date);
+    const snack = snacks.filter(snack => (format(snack.title, 'dd-MM-yyyy') === format(date, 'dd-MM-yyyy')));
+    const index = snacks.findIndex(snack => (format(snack.title, 'dd-MM-yyyy') === format(date, 'dd-MM-yyyy')));
 
     if(snack.length > 0){
-      
-      if (snack[0].data[0].time === time){
 
+      if (snack[0].data.findIndex(data => (format(data.time, 'hh:mm') === format(time, 'hh:mm'))) > 0){
         return Alert.alert('Refeição já cadastrada');
       }else{
   

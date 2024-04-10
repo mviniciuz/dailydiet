@@ -9,6 +9,7 @@ import { Button } from '@components/Button';
 import { SnackItem } from '@components/SnackItem';
 
 import { snackGetAll } from '@storage/snack/snackGetAll';
+import {format} from 'date-fns';
 
 import { styles } from './styles';
 
@@ -66,7 +67,6 @@ export function Home(){
     setTarget(statistics.target);
     setTitle(statistics.percentTotal);
     setStatistics(statistics);
-
   }
 
   function handleAddSnack(){
@@ -85,7 +85,7 @@ export function Home(){
     <SafeAreaView style={styles.container}>
       <Header/>
       <StatisticsCard
-        title={`${title.toFixed(2)}%`}
+        title={`${ isNaN(title) ? 0 : title.toFixed(1)}%`}
         subTitle={'of snacks on into the diet!'}
         showIcon={true}
         target={target}
@@ -109,7 +109,7 @@ export function Home(){
             onPress={()=>navigation.navigate('PreviewEditSnack', { snack: item, title:title } )}
           />
         )}
-        renderSectionHeader={({section: {title}})=> <Text style={styles.textHederSection}>{title}</Text>}
+        renderSectionHeader={({section: {title}})=> <Text style={styles.textHederSection}>{`${format(title, 'dd-MM-yyyy')}`}</Text>}
       />       
     </SafeAreaView>
   )

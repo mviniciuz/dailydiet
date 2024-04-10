@@ -1,5 +1,5 @@
 import { View, Text, TextInput, Alert, ScrollView, TouchableHighlight, TouchableOpacity } from "react-native"
-import DatePicker from "react-native-date-picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { useNavigation} from '@react-navigation/native';
 
 import { format } from "date-fns";
@@ -17,8 +17,8 @@ type Props = {
   type: 'new' | 'edit',
   nameProp?: string,
   descriptionProp?: string,
-  dataProp?: string,
-  timeProp?: string,
+  dataProp?: Date,
+  timeProp?: Date,
   targetProp?: boolean,
 }
 
@@ -26,12 +26,13 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
 
   const [name, setName] = useState(nameProp || '');
   const [description, setDescription] = useState(descriptionProp || '');
-  const [time, setTime] = useState(timeProp || '');
+  const [time, setTime] = useState(new Date(timeProp) || new Date());
   const [target, setTarget] = useState(targetProp || false);  
   const navigation = useNavigation();
 
-  const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState(new Date(dataProp) || new Date());
+  const [openDate, setOpenDate] = useState(false);
+  const [openTime, setOpenTime] = useState(false);
 
   function handleSubmit(){
 
@@ -54,14 +55,22 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
       target: target
     }
 
-    if (type === 'new') {
-      snackAddNew(item);
+    try {
+
+      if (type === 'new') {
+        snackAddNew(item);
+      }
+  
+      if (type === 'edit') {
+        snackEdit(item);
+      }
+      
+    } catch (error) {
+      return
     }
 
-    if (type === 'edit') {
-      snackEdit(item);
-    }
-    
+
+
     navigation.navigate('TargetMessage', {
       title: target ? 'Very good!': 'What shame!',
       subTitle: target ? 
@@ -69,6 +78,7 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
       'You got out of trouble this time, but keep trying and dont give up!',
       target: target
     });
+    
   }
 
   return(
@@ -92,33 +102,46 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
           <View style={styles.dataTime}>
             <View style={styles.data}>
               <Text style={styles.title}>{'Data'}</Text>
-              <TouchableOpacity onPress={() => setOpen(true)}>
+              <TouchableOpacity onPress={() => setOpenDate(prevState => !prevState)}>
                 <TextInput
                   style={styles.inputDataTime}
                   value={`${format(date, 'dd-MM-yyyy')}`}         
                   editable={false}         
-                />            
-                <DatePicker
-                  modal
-                  open={open}
-                  date={date}
-                  onConfirm={(date) => {
-                    setOpen(false)
-                    setDate(date)
-                  }}
-                  onCancel={() => {
-                    setOpen(false)
-                  }}
                 />
+
+                {(openDate && type === 'new')   &&
+                  <DateTimePicker
+                    value={date}
+                    onChange={(event, selectedDate) => {
+                      setDate(selectedDate);
+                      setOpenDate(false);
+                    }}
+                    mode="date"
+                  />
+                }     
               </TouchableOpacity>
             </View>
             <View style={styles.time}>
               <Text style={styles.title}>{'Time'}</Text>
-              <TextInput
-                style={styles.inputDataTime}
-                value={time}
-                onChangeText={setTime}            
-              />
+              <TouchableOpacity onPress={() => setOpenTime(prevState => !prevState)}>
+                <TextInput
+                  style={styles.inputDataTime}
+                  value={`${format(time, 'hh:mm')}`}
+                  editable={false}           
+                />
+
+               {openTime &&
+                  <DateTimePicker
+                    value={time}
+                    onChange={(event, selectedDate) => {
+                      setTime(selectedDate);
+                      setOpenTime(false);
+                    }}
+                    mode="time"
+                  />
+                }                
+
+              </TouchableOpacity>               
             </View> 
           </View>
           <Text style={styles.title}>{'Is in the Diet'}</Text>

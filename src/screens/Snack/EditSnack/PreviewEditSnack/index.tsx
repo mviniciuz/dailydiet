@@ -9,6 +9,8 @@ import { Button } from '@components/Button';
 
 import { snackDelete } from '@storage/snack/snackDelete';
 
+import { format } from 'date-fns';
+
 import { styles, colors } from './styles';
 
 type routeParams = {
@@ -25,11 +27,10 @@ export function PreviewEditSnack(){
     navigation.navigate('EditSnack', {title, snack});
   }
 
-  function onDelete(date: string, time: string){
+  function onDelete(date: Date, time: Date){
     snackDelete(date, time);
     navigation.navigate('home');
   }
-
 
   function handleDeleteSnack(date: string, time: string){
 
@@ -68,7 +69,7 @@ export function PreviewEditSnack(){
             {snack.text}
           </Text>        
           <Text style={styles.dataTime}>
-            {`${title} - ${snack.time}`}
+            {`${format(title, 'dd-MM-yyyy')} - ${format(snack.time, 'hh:mm')}`}
           </Text>
           <View style={styles.target}>
             <MaterialIcons name='circle' size={15} color={snack.target  ? colors.GREEN_MID : colors.RED_MID}/>

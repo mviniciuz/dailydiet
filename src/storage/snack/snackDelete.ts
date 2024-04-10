@@ -4,7 +4,7 @@ import { SNACK_COLLECTION } from "@storage/storageConfig";
 
 import { snackGetAll } from "./snackGetAll";
 
-export async function snackDelete(date:string, time: string){
+export async function snackDelete(date:Date, time: Date){
   const snacks = await snackGetAll();
 
   const snackDate = snacks.filter(snack => snack.title === date);

@@ -18,6 +18,7 @@ export function StatisticsCard({
    target = true,
    onSubmit,
   }: Props){
+
   return(
     <View style={target ? styles.containerTargetOn : styles.containerTargetOf}>
       <View style={styles.formButton}>

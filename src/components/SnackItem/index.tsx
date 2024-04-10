@@ -1,10 +1,11 @@
 import { TouchableOpacity, TouchableOpacityProps, Text } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
+import {format} from 'date-fns';
 
 import { styles, colors } from './styles';
 
 type Props = TouchableOpacityProps & {
-  time: string;
+  time: Date;
   snack: string;
   target: boolean
 }
@@ -15,7 +16,7 @@ export function SnackItem({time, snack, target = true, ...rest}: Props){
       style={styles.container}
       {...rest}
     >
-      <Text style={styles.textTime}>{time}</Text>
+      <Text style={styles.textTime}>{`${format(time, 'hh:mm')}`}</Text>
       <Text style={styles.textSnack}>{snack}</Text>
       <MaterialIcons 
         name="circle"

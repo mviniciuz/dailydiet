@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { SnackForm } from '@components/SnackForm';
@@ -10,6 +9,8 @@ export function NewSnack(){
     <SafeAreaView style={styles.container}>
       <SnackForm
         type='new'
+        dataProp={new Date()}
+        timeProp={new Date()}
       />
     </SafeAreaView>
   )

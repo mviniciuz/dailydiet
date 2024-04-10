@@ -62,13 +62,19 @@ export const styles = StyleSheet.create({
 
   },
   inputDataTime:{
+    flex: 1,
+
+    alignContent: 'center',
+    alignItems:'center',
     minHeight: 48,
     maxHeight: 48,
 
     borderWidth: 1,
     borderColor: theme.COLORS.GRAY_5,
+    fontSize: theme.FONT_SIZE.S14,
     borderRadius: 6,
-    marginBottom: 25
+    marginBottom: 25,
+    textAlign: 'center'
 
   }
 })
