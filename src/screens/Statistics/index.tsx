@@ -16,7 +16,7 @@ export function Statistics(){
   const navigation = useNavigation();
   
   const route = useRoute();
-  const { target } = route.params as RouteParams;
+  const { target, statistics } = route.params as RouteParams;
 
   function handleBackScreen(){
     navigation.navigate('home');  
@@ -33,7 +33,7 @@ export function Statistics(){
                   
         />
         <StatisticsCard
-          title={'90,86%'}
+          title={`${statistics.percentTotal.toFixed(2)}%`}
           subTitle={'of the snacks are into the diet!'}        
           target={target}          
         />
@@ -41,21 +41,21 @@ export function Statistics(){
       <View style={styles.formEstatiscs}>
         <Text style={styles.textTitle}>{'All statistics!'}</Text>
         <View style={styles.cardLarge}>
-          <Text style={styles.titleCard}>{'22'}</Text>
+          <Text style={styles.titleCard}>{statistics.betterSequencyDay}</Text>
           <Text style={styles.subtitleCard}>{'Better sequency of snacks in days'}</Text>
         </View>
         <View style={styles.cardLarge}>
-          <Text style={styles.titleCard}>{'109'}</Text>
+          <Text style={styles.titleCard}>{statistics.snacksRegister}</Text>
           <Text style={styles.subtitleCard}>{'Snacks register'}</Text>
         </View>
         <View style={styles.formCardSmall}>
            <View style={styles.cardTargetOn}>
-             <Text style={styles.titleCard}>{'99'}</Text>
+             <Text style={styles.titleCard}>{statistics.snacksIntoOfDiet}</Text>
              <Text style={styles.subtitleCard}>{'Snacks into the diet'}</Text>
               
            </View>
            <View style={styles.cardTargetOff}>
-             <Text style={styles.titleCard}>{'10'}</Text>
+             <Text style={styles.titleCard}>{statistics.snacksOutOfDiet}</Text>
              <Text style={styles.subtitleCard}>{'Snacks out of the diet'}</Text>
               
            </View>         

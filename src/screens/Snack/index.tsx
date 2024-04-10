@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 import { Navigator } from '@components/Navigator';

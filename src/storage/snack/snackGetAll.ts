@@ -9,10 +9,14 @@ export async function snackGetAll(){
 
     const snacks: string[] = storage ?  JSON.parse(storage) : [];
 
+//    await AsyncStorage.setItem(SNACK_COLLECTION, JSON.stringify([]))
+
     return snacks;
     
   } catch (error) {
     throw error
   }
+
+
 
 }

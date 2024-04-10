@@ -1,6 +1,8 @@
-import { View, Text, TextInput, Alert } from "react-native"
-
+import { View, Text, TextInput, Alert, ScrollView, TouchableHighlight, TouchableOpacity } from "react-native"
+import DatePicker from "react-native-date-picker";
 import { useNavigation} from '@react-navigation/native';
+
+import { format } from "date-fns";
 
 import { styles } from './styles';
 
@@ -24,10 +26,12 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
 
   const [name, setName] = useState(nameProp || '');
   const [description, setDescription] = useState(descriptionProp || '');
-  const [data, setData] = useState(dataProp || '');
   const [time, setTime] = useState(timeProp || '');
   const [target, setTarget] = useState(targetProp || false);  
   const navigation = useNavigation();
+
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
 
   function handleSubmit(){
 
@@ -35,7 +39,7 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
       return Alert.alert('Field name invalid');
 
     } 
-    if (data.length === 0){
+    if (!date){
       return Alert.alert('Field date invalid')
     }
     if (time.length === 0){
@@ -45,7 +49,7 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
     const item = {
       name: name,
       text: description,
-      date: data,
+      date: date,
       time: time,
       target: target
     }
@@ -69,47 +73,64 @@ export function SnackForm({ type, nameProp, descriptionProp, dataProp, timeProp,
 
   return(
     <View style={styles.container}>
-
-    <View style={styles.formContent}>
-      <Text style={styles.title}>{'Name'}</Text>
-      <TextInput
-        style={styles.inputName}
-        value={name}
-        onChangeText={setName}        
-      />
-      <Text style={styles.title}>{'Description'}</Text>
-      <TextInput
-        style={styles.inputDescription}
-        value={description}
-        onChangeText={setDescription}     
-      />
-      <View style={styles.dataTime}>
-        <View style={styles.data}>
-          <Text style={styles.title}>{'Data'}</Text>
+      <ScrollView
+        keyboardDismissMode='on-drag'
+      >
+        <View style={styles.formContent}>
+          <Text style={styles.title}>{'Name'}</Text>
           <TextInput
-            style={styles.inputDataTime}
-            value={data}
-            onChangeText={setData}            
+            style={styles.inputName}
+            value={name}
+            onChangeText={setName}        
           />
+          <Text style={styles.title}>{'Description'}</Text>
+          <TextInput
+            style={styles.inputDescription}
+            value={description}
+            onChangeText={setDescription}     
+          />
+          <View style={styles.dataTime}>
+            <View style={styles.data}>
+              <Text style={styles.title}>{'Data'}</Text>
+              <TouchableOpacity onPress={() => setOpen(true)}>
+                <TextInput
+                  style={styles.inputDataTime}
+                  value={`${format(date, 'dd-MM-yyyy')}`}         
+                  editable={false}         
+                />            
+                <DatePicker
+                  modal
+                  open={open}
+                  date={date}
+                  onConfirm={(date) => {
+                    setOpen(false)
+                    setDate(date)
+                  }}
+                  onCancel={() => {
+                    setOpen(false)
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.time}>
+              <Text style={styles.title}>{'Time'}</Text>
+              <TextInput
+                style={styles.inputDataTime}
+                value={time}
+                onChangeText={setTime}            
+              />
+            </View> 
+          </View>
+          <Text style={styles.title}>{'Is in the Diet'}</Text>
+          <SelectTarget target={target} setTarget={setTarget}/>
+          </View>
+          <View style={styles.buttonContainer}>
+          <Button
+            title={type === 'new' ? 'Add Snack' : 'Save changes'}
+            onSubmit={handleSubmit}
+          /> 
         </View>
-        <View style={styles.time}>
-          <Text style={styles.title}>{'Time'}</Text>
-          <TextInput
-            style={styles.inputDataTime}
-            value={time}
-            onChangeText={setTime}            
-          />
-        </View> 
-      </View>
-      <Text style={styles.title}>{'Is in the Diet'}</Text>
-      <SelectTarget target={target} setTarget={setTarget}/>
-      </View>
-      <View style={styles.buttonContainer}>
-      <Button
-        title={type === 'new' ? 'Add Snack' : 'Save changes'}
-        onSubmit={handleSubmit}
-      /> 
-      </View>
+      </ScrollView>
     </View>
   )
 }

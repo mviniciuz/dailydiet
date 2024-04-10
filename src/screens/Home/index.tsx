@@ -14,9 +14,17 @@ import { styles } from './styles';
 
 export function Home(){
   const [target, setTarget] = useState(false);
+  const [title, setTitle] = useState(0);
+  const [statistics, setStatistics] = useState({
+    percentTotal: 0,
+    betterSequencyDay:0,
+    snacksRegister:0,
+    snacksIntoOfDiet:0,
+    snacksOutOfDiet:0,
+    target: false
+  });
 
   const [snacks, setSnacks] = useState([]);
-
 
   const navigation = useNavigation();
 
@@ -26,6 +34,39 @@ export function Home(){
     const storage2 = await snackGetAll();
 
     setSnacks(storage2);
+
+    const statistics = {
+      percentTotal: 0,
+      betterSequencyDay:0,
+      snacksRegister:0,
+      snacksIntoOfDiet:0,
+      snacksOutOfDiet:0,
+      target: false
+    }
+
+    storage2.map(snack => {
+      snack.data.map( data => {
+        statistics.snacksRegister = statistics.snacksRegister+1;
+        if(data.target === true) {
+          statistics.snacksIntoOfDiet = statistics.snacksIntoOfDiet+1; 
+        } else {
+          statistics.snacksOutOfDiet = statistics.snacksOutOfDiet+1;
+        }
+      });
+      if (snack.data.length > statistics.betterSequencyDay){
+        statistics.betterSequencyDay = snack.data.length;
+      }
+    });
+    statistics.snacksRegister = statistics.snacksIntoOfDiet+statistics.snacksOutOfDiet;
+    if (statistics.snacksIntoOfDiet >= statistics.snacksOutOfDiet) {
+      statistics.target = true;
+    }
+    statistics.percentTotal = (statistics.snacksIntoOfDiet/statistics.snacksRegister)*100;
+
+    setTarget(statistics.target);
+    setTitle(statistics.percentTotal);
+    setStatistics(statistics);
+
   }
 
   function handleAddSnack(){
@@ -33,7 +74,7 @@ export function Home(){
   }
 
   function handleShowStatistics(){
-    navigation.navigate('statistics', { target: target });    
+    navigation.navigate('statistics', { target: target, statistics: statistics});    
   }
 
   useFocusEffect(useCallback(()=>{
@@ -44,7 +85,7 @@ export function Home(){
     <SafeAreaView style={styles.container}>
       <Header/>
       <StatisticsCard
-        title={'90,86%'}
+        title={`${title.toFixed(2)}%`}
         subTitle={'of snacks on into the diet!'}
         showIcon={true}
         target={target}
