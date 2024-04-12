@@ -8,7 +8,11 @@ import { styles } from './styles';
 export function Header(){
   return(
     <View style={styles.container}>
-      <Image source={Logo} />
+      <Image style={{
+        maxWidth: 120,
+        maxHeight: 50,
+        resizeMode: 'contain',
+      }} source={Logo} />
       <Image source={Elpipse}/>
     </View>
   )
