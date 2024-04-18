@@ -1,4 +1,4 @@
-# IGNITE TEAMS
+# DailyDiet
 
 This application was built to help peaple organize yours daily diet routine.
 
