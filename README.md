@@ -1,8 +1,8 @@
 # IGNITE TEAMS
 
-This application was built to help teams organizar seus hobbies and happy hours, they can create teams with participants or members by team, to confraternization with sports or games.
+This application was built to help peaple organize yours daily diet routine.
 
-<Img src="src/assets/screen.png"/>
+<Img src="src/assets/screens.png"/>
 
 
 ### 📋 Prerequisites
